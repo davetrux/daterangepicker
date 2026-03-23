@@ -1,0 +1,51 @@
+<table class="table-condensed">
+  <thead>
+    <tr>
+      @if (showWeekNumbers || showISOWeekNumbers) {
+        <th></th>
+      }
+      @if (showPrev) {
+        <th class="prev available" (click)="prevClicked.emit(side)">
+          <span></span>
+        </th>
+      } @else {
+        <th></th>
+      }
+      <th colspan="5" class="month">
+        @if (showDropdowns) {
+          <select class="monthselect"
+            [ngModel]="currentMonth"
+            (ngModelChange)="onMonthChange($event)">
+            @for (m of [0,1,2,3,4,5,6,7,8,9,10,11]; track m) {
+              <option [value]="m" [disabled]="isMonthDisabled(m)">{{ locale.monthNames[m] }}</option>
+            }
+          </select>
+          <select class="yearselect"
+            [ngModel]="currentYear"
+            (ngModelChange)="onYearChange($event)">
+            @for (y of getYears(); track y) {
+              <option [value]="y">{{ y }}</option>
+            }
+          </select>
+        } @else {
+          {{ monthLabel }}
+        }
+      </th>
+      @if (showNext) {
+        <th class="next available" (click)="nextClicked.emit(side)">
+          <span></span>
+        </th>
+      } @else {
+        <th></th>
+      }
+    </tr>
+    <tr>
+      @if (showWeekNumbers || showISOWeekNumbers) {
+        <th class="week">{{ locale.weekLabel }}</th>
+      }
+      @for (day of locale.daysOfWeek; track day) {
+        <th>{{ day }}</th>
+      }
+    </tr>
+  </thead>
+</table>

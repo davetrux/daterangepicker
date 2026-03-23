@@ -1,0 +1,28 @@
+{
+  "name": "ng-daterangepicker",
+  "version": "4.0.0",
+  "description": "Angular date range picker component library — Bootstrap-compatible, dayjs-based",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "dayjs": "^1.11.20",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/ng-daterangepicker.mjs",
+  "typings": "types/ng-daterangepicker.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./types/ng-daterangepicker.d.ts",
+      "default": "./fesm2022/ng-daterangepicker.mjs"
+    }
+  }
+}

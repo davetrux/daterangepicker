@@ -1,0 +1,42 @@
+<div class="drp-calendar" [class.left]="side === 'left'" [class.right]="side === 'right'">
+  <div class="calendar-table">
+    <drp-calendar-header
+      [side]="side"
+      [calendarState]="calendarState"
+      [locale]="locale"
+      [showDropdowns]="showDropdowns"
+      [showWeekNumbers]="showWeekNumbers"
+      [showISOWeekNumbers]="showISOWeekNumbers"
+      [linkedCalendars]="linkedCalendars"
+      [singleDatePicker]="singleDatePicker"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [minYear]="minYear"
+      [maxYear]="maxYear"
+      (prevClicked)="prevClicked.emit($event)"
+      (nextClicked)="nextClicked.emit($event)"
+      (monthYearChanged)="monthYearChanged.emit($event)">
+    </drp-calendar-header>
+    <drp-calendar-grid
+      [side]="side"
+      [calendarState]="calendarState"
+      [showWeekNumbers]="showWeekNumbers"
+      [showISOWeekNumbers]="showISOWeekNumbers"
+      [hoverDate]="hoverDate"
+      [startDate]="startDate"
+      [endDate]="endDate"
+      (dateClicked)="dateClicked.emit($event)"
+      (dateHovered)="dateHovered.emit($event)">
+    </drp-calendar-grid>
+  </div>
+  @if (timePicker && timePickerState) {
+    <drp-time-picker
+      [side]="side"
+      [state]="timePickerState"
+      [disabled]="timePickerDisabled"
+      [timePicker24Hour]="timePicker24Hour"
+      [timePickerSeconds]="timePickerSeconds"
+      (timeChanged)="timeChanged.emit($event)">
+    </drp-time-picker>
+  }
+</div>

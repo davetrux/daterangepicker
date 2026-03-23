@@ -1,0 +1,98 @@
+<!-- Trigger element — consumers project their own input/button via ng-content -->
+<span #triggerEl (click)="toggle()" (keydown)="onKeydown($event)">
+  <ng-content></ng-content>
+</span>
+
+<!-- Picker panel — moved to document.body in ngAfterViewInit -->
+<div #pickerPanel
+  [ngClass]="pickerClasses"
+  [ngStyle]="positionStyles"
+  [hidden]="!isShowing">
+
+  @if (showRanges) {
+    <div class="ranges">
+      <drp-ranges
+        [ranges]="builtRanges"
+        [showCustomRangeLabel]="showCustomRangeLabel"
+        [customRangeLabel]="resolvedLocale.customRangeLabel"
+        [chosenLabel]="chosenLabel"
+        (rangeClicked)="onRangeClicked($event)">
+      </drp-ranges>
+    </div>
+  }
+
+  <!-- Left calendar -->
+  <drp-calendar
+    side="left"
+    [calendarState]="leftCalendarState"
+    [locale]="resolvedLocale"
+    [timePicker]="timePicker"
+    [timePicker24Hour]="timePicker24Hour"
+    [timePickerSeconds]="timePickerSeconds"
+    [timePickerState]="leftTimePickerState"
+    [timePickerDisabled]="false"
+    [showDropdowns]="showDropdowns"
+    [showWeekNumbers]="showWeekNumbers"
+    [showISOWeekNumbers]="showISOWeekNumbers"
+    [linkedCalendars]="linkedCalendars"
+    [singleDatePicker]="singleDatePicker"
+    [minDate]="resolvedMinDate"
+    [maxDate]="resolvedMaxDate"
+    [minYear]="effectiveMinYear"
+    [maxYear]="effectiveMaxYear"
+    [hoverDate]="hoverDate"
+    [startDate]="internalStartDate"
+    [endDate]="internalEndDate"
+    (prevClicked)="onPrevClicked($event)"
+    (nextClicked)="onNextClicked($event)"
+    (monthYearChanged)="onMonthYearChanged($event)"
+    (dateClicked)="onDateClicked($event)"
+    (dateHovered)="onDateHovered($event)"
+    (timeChanged)="onTimeChanged($event)">
+  </drp-calendar>
+
+  <!-- Right calendar (hidden when singleDatePicker) -->
+  @if (!singleDatePicker) {
+    <drp-calendar
+      side="right"
+      [calendarState]="rightCalendarState"
+      [locale]="resolvedLocale"
+      [timePicker]="timePicker"
+      [timePicker24Hour]="timePicker24Hour"
+      [timePickerSeconds]="timePickerSeconds"
+      [timePickerState]="rightTimePickerState"
+      [timePickerDisabled]="!internalEndDate"
+      [showDropdowns]="showDropdowns"
+      [showWeekNumbers]="showWeekNumbers"
+      [showISOWeekNumbers]="showISOWeekNumbers"
+      [linkedCalendars]="linkedCalendars"
+      [singleDatePicker]="singleDatePicker"
+      [minDate]="resolvedMinDate"
+      [maxDate]="resolvedMaxDate"
+      [minYear]="effectiveMinYear"
+      [maxYear]="effectiveMaxYear"
+      [hoverDate]="hoverDate"
+      [startDate]="internalStartDate"
+      [endDate]="internalEndDate"
+      (prevClicked)="onPrevClicked($event)"
+      (nextClicked)="onNextClicked($event)"
+      (monthYearChanged)="onMonthYearChanged($event)"
+      (dateClicked)="onDateClicked($event)"
+      (dateHovered)="onDateHovered($event)"
+      (timeChanged)="onTimeChanged($event)">
+    </drp-calendar>
+  }
+
+  <drp-buttons
+    [selectedText]="selectedText"
+    [applyDisabled]="isApplyDisabled"
+    [applyLabel]="resolvedLocale.applyLabel"
+    [cancelLabel]="resolvedLocale.cancelLabel"
+    [buttonClasses]="buttonClasses"
+    [applyButtonClasses]="applyButtonClasses"
+    [cancelButtonClasses]="cancelButtonClasses"
+    (applyClicked)="clickApply()"
+    (cancelClicked)="clickCancel()">
+  </drp-buttons>
+
+</div>

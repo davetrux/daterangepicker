@@ -1,0 +1,31 @@
+<div class="calendar-time">
+  <select class="hourselect" [disabled]="disabled"
+    [(ngModel)]="selectedHour" (change)="emitChange()">
+    @for (opt of state.hours; track opt.value) {
+      <option [value]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
+    }
+  </select>
+  :
+  <select class="minuteselect" [disabled]="disabled"
+    [(ngModel)]="selectedMinute" (change)="emitChange()">
+    @for (opt of state.minutes; track opt.value) {
+      <option [value]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
+    }
+  </select>
+  @if (timePickerSeconds) {
+    :
+    <select class="secondselect" [disabled]="disabled"
+      [(ngModel)]="selectedSecond" (change)="emitChange()">
+      @for (opt of state.seconds; track opt.value) {
+        <option [value]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
+      }
+    </select>
+  }
+  @if (!timePicker24Hour) {
+    <select class="ampmselect" [disabled]="disabled"
+      [(ngModel)]="selectedAmpm" (change)="emitChange()">
+      <option value="AM" [disabled]="state.ampmDisabledAM">AM</option>
+      <option value="PM" [disabled]="state.ampmDisabledPM">PM</option>
+    </select>
+  }
+</div>

@@ -1,0 +1,14 @@
+<ul>
+  @for (range of ranges; track range.key) {
+    <li
+      [class.active]="range.key === chosenLabel"
+      [attr.data-range-key]="range.key"
+      (click)="rangeClicked.emit(range)">{{ range.label }}</li>
+  }
+  @if (showCustomRangeLabel) {
+    <li
+      [class.active]="chosenLabel === customRangeLabel"
+      [attr.data-range-key]="customRangeLabel"
+      (click)="rangeClicked.emit(null)">{{ customRangeLabel }}</li>
+  }
+</ul>

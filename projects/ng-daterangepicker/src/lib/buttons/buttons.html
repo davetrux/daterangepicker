@@ -1,0 +1,12 @@
+<div class="drp-buttons">
+  <span class="drp-selected">{{ selectedText }}</span>
+  <button
+    [class]="buttonClasses + ' cancelBtn ' + cancelButtonClasses"
+    type="button"
+    (click)="cancelClicked.emit()">{{ cancelLabel }}</button>
+  <button
+    [class]="buttonClasses + ' applyBtn ' + applyButtonClasses"
+    type="button"
+    [disabled]="applyDisabled"
+    (click)="applyClicked.emit()">{{ applyLabel }}</button>
+</div>

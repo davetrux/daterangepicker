@@ -1,0 +1,54 @@
+<div class="container py-5">
+  <h1 class="mb-4">{{ title }}</h1>
+
+  <div class="row g-4">
+    <!-- Basic date range picker -->
+    <div class="col-12">
+      <h5>Basic Range Picker</h5>
+      <drp-date-range-picker
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [ranges]="ranges"
+        [showDropdowns]="true"
+        (apply)="onRangeApplied($event)">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-calendar-range me-2"></i>{{ selectedRange() }}
+        </button>
+      </drp-date-range-picker>
+    </div>
+
+    <!-- Single date picker -->
+    <div class="col-12">
+      <h5>Single Date Picker</h5>
+      <drp-date-range-picker
+        [singleDatePicker]="true"
+        [showDropdowns]="true"
+        (apply)="onRangeApplied($event)">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-calendar me-2"></i>Pick a date
+        </button>
+      </drp-date-range-picker>
+    </div>
+
+    <!-- With time picker -->
+    <div class="col-12">
+      <h5>With Time Picker</h5>
+      <drp-date-range-picker
+        [timePicker]="true"
+        [timePicker24Hour]="false"
+        [showDropdowns]="true"
+        (apply)="onRangeApplied($event)">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-clock me-2"></i>Pick date &amp; time
+        </button>
+      </drp-date-range-picker>
+    </div>
+
+    <!-- Selected value display -->
+    <div class="col-12">
+      <div class="alert alert-info">
+        <strong>Last selected:</strong> {{ selectedRange() }}
+      </div>
+    </div>
+  </div>
+</div>

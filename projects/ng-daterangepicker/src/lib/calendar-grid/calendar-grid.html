@@ -1,0 +1,21 @@
+<table class="table-condensed">
+  <tbody>
+    @for (row of calendarState.calendar; track $index) {
+      <tr>
+        @if (showWeekNumbers) {
+          <td class="week">{{ row[0].date.week() }}</td>
+        }
+        @if (showISOWeekNumbers) {
+          <td class="week">{{ row[0].date.isoWeek() }}</td>
+        }
+        @for (cell of row; track cell.col) {
+          <td
+            [ngClass]="getCellClasses(cell)"
+            [attr.data-title]="'r' + cell.row + 'c' + cell.col"
+            (mousedown)="onCellMousedown(cell, $event)"
+            (mouseenter)="onCellMouseenter(cell)">{{ cell.dayNumber }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
