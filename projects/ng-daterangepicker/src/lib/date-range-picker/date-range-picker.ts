@@ -387,11 +387,6 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
     let left: string = 'auto';
     let right: string = 'auto';
 
-    // Reset panel to measure width
-    panel.style.top = '0';
-    panel.style.left = '0';
-    panel.style.right = 'auto';
-
     if (this.opens === 'left') {
       const containerRight = viewportWidth - triggerRect.right - scrollX;
       if (panelWidth + containerRight > viewportWidth) {
