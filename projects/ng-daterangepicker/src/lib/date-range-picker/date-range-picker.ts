@@ -324,8 +324,20 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
     this.oldEndDate = this.internalEndDate ? this.internalEndDate.clone() : null;
     this.previousRightTime = this.internalEndDate ? this.internalEndDate.clone() : undefined;
     this.updateView();
+
+    // Pre-position synchronously so the picker is at the correct location on the first render.
+    // Temporarily force display:block so move() can read panel dimensions, then restore.
+    const panel = this.pickerPanelRef?.nativeElement;
+    if (panel) {
+      const prev = panel.style.display;
+      panel.style.display = 'block';
+      void panel.offsetWidth; // force layout
+      this.move();
+      panel.style.display = prev;
+    }
+
     this.isShowing = true;
-    setTimeout(() => this.move(), 0); // wait for panel to render
+    setTimeout(() => this.move(), 0); // re-position after Angular renders full content (drops=up/auto)
     this.showPicker.emit();
   }
 
