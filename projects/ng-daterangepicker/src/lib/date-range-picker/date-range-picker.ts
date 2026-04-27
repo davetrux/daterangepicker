@@ -204,7 +204,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
       : [];
 
     // Determine if calendars panel should always be visible
-    this.showCalendarsPanel = (this.builtRanges.length === 0 && !this.singleDatePicker) || this.alwaysShowCalendars;
+    this.showCalendarsPanel = this.builtRanges.length === 0 || this.alwaysShowCalendars;
   }
 
   // ── View update ───────────────────────────────────────────────────────────
@@ -324,6 +324,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
     this.oldEndDate = this.internalEndDate ? this.internalEndDate.clone() : null;
     this.previousRightTime = this.internalEndDate ? this.internalEndDate.clone() : undefined;
     this.updateView();
+    this.positionStyles = { ...this.positionStyles, visibility: 'hidden' };
     this.isShowing = true;
     setTimeout(() => this.move(), 0); // wait for panel to render
     this.showPicker.emit();
@@ -426,6 +427,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
       left,
       right,
       position: 'absolute',
+      visibility: 'visible',
     };
   }
 
@@ -682,6 +684,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
   get pickerClasses(): Record<string, boolean> {
     return {
       'daterangepicker': true,
+      'open': this.isShowing,
       'single': this.singleDatePicker,
       'show-calendar': this.showCalendarsPanel,
       'show-ranges': this.showRanges,

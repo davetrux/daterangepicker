@@ -6,8 +6,7 @@
 <!-- Picker panel — moved to document.body in ngAfterViewInit -->
 <div #pickerPanel
   [ngClass]="pickerClasses"
-  [ngStyle]="positionStyles"
-  [hidden]="!isShowing">
+  [ngStyle]="positionStyles">
 
   @if (showRanges) {
     <div class="ranges">

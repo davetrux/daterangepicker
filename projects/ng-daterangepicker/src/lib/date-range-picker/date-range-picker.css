@@ -50,6 +50,8 @@
 .daterangepicker.opensright:before { left: 9px; }
 .daterangepicker.opensright:after  { left: 10px; }
 
+.daterangepicker.open { display: block; }
+
 .daterangepicker.drop-up { margin-top: -7px; }
 .daterangepicker.drop-up:before {
   top: initial; bottom: -7px;
