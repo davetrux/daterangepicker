@@ -104,7 +104,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
   builtRanges: RangeItem[] = [];
   chosenLabel: string | null = null;
   hoverDate: Dayjs | null = null;
-  positionStyles: Record<string, string> = { top: '0', left: '0' };
+  positionStyles: Record<string, string> = { top: '-9999px', left: '-9999px' };
   isApplyDisabled = true;
   isDropUp = false;
   selectedText = '';
@@ -324,7 +324,6 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
     this.oldEndDate = this.internalEndDate ? this.internalEndDate.clone() : null;
     this.previousRightTime = this.internalEndDate ? this.internalEndDate.clone() : undefined;
     this.updateView();
-    this.positionStyles = { ...this.positionStyles, visibility: 'hidden' };
     this.isShowing = true;
     setTimeout(() => this.move(), 0); // wait for panel to render
     this.showPicker.emit();
@@ -427,7 +426,6 @@ export class DateRangePickerComponent implements OnInit, OnChanges, AfterViewIni
       left,
       right,
       position: 'absolute',
-      visibility: 'visible',
     };
   }
 
